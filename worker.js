@@ -12,7 +12,8 @@ export class ViewCounter {
 const HOME_SITES = new Map([
   ['/', 'barotool'], ['/marketing', 'marketing'], ['/marketing/', 'marketing'],
   ['/packfit', 'packfit'], ['/packfit/', 'packfit'], ['/tilefit', 'tilefit'], ['/tilefit/', 'tilefit'],
-  ['/powercost', 'powercost'], ['/powercost/', 'powercost'], ['/curtainfit', 'curtainfit'], ['/curtainfit/', 'curtainfit']
+  ['/powercost', 'powercost'], ['/powercost/', 'powercost'], ['/curtainfit', 'curtainfit'], ['/curtainfit/', 'curtainfit'],
+  ['/paintfit', 'paintfit'], ['/paintfit/', 'paintfit']
 ]);
 class ViewBadgeInjector {
   constructor(site) { this.site = site; }
