@@ -11,6 +11,7 @@ export class ViewCounter {
 }
 const HOME_SITES = new Map([
   ['/', 'barotool'], ['/marketing', 'marketing'], ['/marketing/', 'marketing'],
+  ['/areafit', 'areafit'], ['/areafit/', 'areafit'],
   ['/packfit', 'packfit'], ['/packfit/', 'packfit'], ['/tilefit', 'tilefit'], ['/tilefit/', 'tilefit'],
   ['/powercost', 'powercost'], ['/powercost/', 'powercost'], ['/curtainfit', 'curtainfit'], ['/curtainfit/', 'curtainfit'],
   ['/paintfit', 'paintfit'], ['/paintfit/', 'paintfit'], ['/wallfit', 'wallfit'], ['/wallfit/', 'wallfit']
@@ -27,7 +28,7 @@ export default { async fetch(request, env) {
   if (url.pathname === '/api/view') {
     const site = (url.searchParams.get('site') || 'barotool').toLowerCase();
     if (!/^[a-z0-9-]{1,40}$/.test(site)) return new Response('Bad Request',{status:400});
-    const id=env.VIEW_COUNTER.idFromName(site); return env.VIEW_COUNTER.get(id).fetch('https://counter.internal/increment');
+    const id=env.VIEW_COUNTER.idFromName(site); return env.VIEW_COUNTER.get(id).fetch(request);
   }
   const response=await env.ASSETS.fetch(request), site=HOME_SITES.get(url.pathname), type=response.headers.get('content-type')||'';
   if(site&&type.includes('text/html')) return new HTMLRewriter().on('body',new ViewBadgeInjector(site)).transform(response);
