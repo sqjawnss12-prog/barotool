@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>포장핏 - 택배 박스 채움률·포장 효율 계산기</title>
+<meta name="description" content="상품과 박스 크기를 입력해 단품 수납 가능 여부, 부피 채움률, 예상 필요 박스 수, 부피무게를 브라우저에서 계산하는 무료 포장 효율 도구입니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://barotool.sqjawnss12.workers.dev/packfit/">
+<meta property="og:type" content="website"><meta property="og:title" content="포장핏 - 택배 박스 채움률 계산기"><meta property="og:description" content="상품·박스 치수로 포장 효율과 부피무게를 빠르게 계산하세요."><meta property="og:url" content="https://barotool.sqjawnss12.workers.dev/packfit/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"포장핏","url":"https://barotool.sqjawnss12.workers.dev/packfit/","applicationCategory":"BusinessApplication","operatingSystem":"Any","description":"상품과 박스 치수를 이용해 포장 채움률과 부피무게를 계산하는 브라우저 기반 도구"}</script>
+<style>
+:root{--bg:#f7f7f3;--card:#fff;--text:#172018;--muted:#667067;--line:#dfe5df;--accent:#147a43;--accent2:#e9f6ee}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}a{color:inherit}.wrap{width:min(1040px,92%);margin:auto}header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.nav{display:flex;align-items:center;justify-content:space-between;padding:15px 0}.brand{text-decoration:none;font-weight:900;font-size:1.25rem}.brand b{color:var(--accent)}nav a{font-size:.92rem;color:var(--muted);margin-left:18px;text-decoration:none}.hero{padding:58px 0 28px}.eyebrow{display:inline-block;background:var(--accent2);color:var(--accent);font-weight:800;padding:5px 10px;border-radius:999px;font-size:.82rem}.hero h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.08;margin:14px 0}.hero p{color:var(--muted);max-width:720px;font-size:1.05rem}.layout{display:grid;grid-template-columns:1.25fr .75fr;gap:20px;padding-bottom:36px}.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 30px rgba(0,0,0,.035)}h2{margin-top:0}fieldset{border:0;padding:0;margin:0 0 20px}legend{font-weight:800;margin-bottom:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}label{font-size:.86rem;color:var(--muted)}input,select{width:100%;margin-top:5px;padding:12px;border:1px solid #cad2ca;border-radius:10px;font:inherit;background:#fff}.btns{display:flex;gap:10px}.btn{border:0;border-radius:11px;padding:12px 15px;font-weight:800;cursor:pointer}.primary{background:var(--accent);color:#fff}.secondary{background:#edf0ed;color:var(--text)}.results{display:grid;gap:10px}.metric{background:#fafbf9;border:1px solid var(--line);border-radius:13px;padding:14px}.metric span{display:block;color:var(--muted);font-size:.82rem}.metric strong{font-size:1.35rem}.ok{color:#147a43}.warn{color:#ad5b00}.note{font-size:.88rem;color:var(--muted);margin-top:12px}.content{padding:10px 0 60px}.content section{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;margin:16px 0}.content h2{font-size:1.35rem}.formula{background:#f4f6f4;border-radius:10px;padding:12px;font-family:ui-monospace,monospace;overflow:auto}.links{display:flex;gap:14px;flex-wrap:wrap}.links a{color:var(--accent)}footer{border-top:1px solid var(--line);background:#fff;color:var(--muted);padding:26px 0;font-size:.88rem}@media(max-width:760px){.layout{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.nav nav{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="/packfit/">포장<b>핏</b></a><nav><a href="#calculator">계산기</a><a href="#guide">사용법</a><a href="/privacy.html">개인정보</a><a href="/">바로툴</a></nav></div></header>
+<main>
+<section class="hero wrap"><span class="eyebrow">무료 · 회원가입 없음 · 브라우저 계산</span><h1>박스가 너무 크거나<br>작은지 바로 계산하세요</h1><p>상품과 택배 박스의 가로·세로·높이를 입력하면 단품이 실제로 들어갈 수 있는지 6가지 회전 방향을 확인하고, 부피 채움률과 예상 필요 박스 수, 부피무게까지 계산합니다.</p></section>
+<section class="wrap layout" id="calculator">
+<div class="panel">
+<h2>포장 정보 입력</h2>
+<fieldset><legend>상품 크기</legend><div class="grid3"><label>가로 (cm)<input id="iw" type="number" min="0" step="0.1" value="24"></label><label>세로 (cm)<input id="ih" type="number" min="0" step="0.1" value="16"></label><label>높이 (cm)<input id="id" type="number" min="0" step="0.1" value="8"></label></div><div class="grid2" style="margin-top:10px"><label>상품 수량<input id="qty" type="number" min="1" step="1" value="3"></label><label>상품 총 실무게 (kg, 선택)<input id="weight" type="number" min="0" step="0.01" placeholder="예: 2.4"></label></div></fieldset>
+<fieldset><legend>박스 안쪽 크기</legend><div class="grid3"><label>가로 (cm)<input id="bw" type="number" min="0" step="0.1" value="40"></label><label>세로 (cm)<input id="bh" type="number" min="0" step="0.1" value="30"></label><label>높이 (cm)<input id="bd" type="number" min="0" step="0.1" value="20"></label></div><div class="grid2" style="margin-top:10px"><label>부피무게 계수<select id="divisor"><option value="5000">5,000</option><option value="6000" selected>6,000</option><option value="4000">4,000</option></select></label><label>완충재 여유율 (%)<input id="buffer" type="number" min="0" max="80" step="1" value="10"></label></div></fieldset>
+<div class="btns"><button class="btn primary" id="calc">계산하기</button><button class="btn secondary" id="reset">초기화</button></div>
+<p class="note">※ 박스 치수는 가능하면 <strong>내부 치수</strong>를 사용하세요. 여러 상품의 실제 배치는 모양·적재 방향에 따라 달라지므로 수량 결과는 부피 기준 추정치입니다.</p>
+</div>
+<aside class="panel" aria-live="polite"><h2>계산 결과</h2><div class="results"><div class="metric"><span>단품 수납 여부</span><strong id="fit">-</strong></div><div class="metric"><span>부피 채움률</span><strong id="fill">-</strong></div><div class="metric"><span>완충재 여유 반영 예상 박스 수</span><strong id="boxes">-</strong></div><div class="metric"><span>박스 1개의 부피무게</span><strong id="volWeight">-</strong></div><div class="metric"><span>실무게 입력 시 비교</span><strong id="charge">-</strong></div></div></aside>
+</section>
+<div class="wrap content">
+<section id="guide"><h2>포장핏은 무엇을 계산하나요?</h2><p>온라인 판매자나 중고거래 발송자가 상품에 비해 지나치게 큰 박스를 선택하면 완충재 사용량과 부피가 늘어날 수 있습니다. 포장핏은 상품 부피와 박스 부피를 비교해 <strong>채움률</strong>을 보여주고, 한 상품이 박스 안에 들어가는지는 가로·세로·높이의 6가지 회전 조합을 모두 비교합니다.</p><div class="formula">채움률(%) = 상품 1개 부피 × 수량 ÷ 박스 부피 × 100</div></section>
+<section><h2>부피무게는 참고값입니다</h2><p>부피무게는 일반적으로 <code>가로 × 세로 × 높이 ÷ 계수</code> 형태로 계산하지만 실제 운송사가 사용하는 계수와 반올림 방식은 서비스·계약 조건에 따라 달라질 수 있습니다. 포장핏은 특정 택배사의 운임을 보장하지 않으며, 발송 전 이용하려는 운송사의 공식 기준을 확인해야 합니다.</p></section>
+<section><h2>결과를 해석하는 방법</h2><p><strong>단품 수납 불가</strong>가 나오면 상품의 어느 회전 방향에서도 박스 각 변 안에 들어가지 않는다는 뜻입니다. 채움률은 공간 효율을 비교하기 위한 값으로, 100%에 가깝더라도 완충재와 포장 오차가 필요합니다. 그래서 기본값으로 10%의 여유 공간을 두고 예상 박스 수를 계산합니다.</p></section>
+<section><h2>관련 무료 도구</h2><div class="links"><a href="/marketing/">마케팅셈</a><a href="/aspect-ratio.html">화면비율 계산기</a><a href="/image-compress.html">상품 이미지 용량 줄이기</a><a href="/">바로툴 전체 도구</a></div></section>
+</div>
+</main>
+<footer><div class="wrap">© 2026 포장핏 · <a href="/about.html">운영 소개</a> · <a href="/privacy.html">개인정보처리방침</a> · <a href="/contact.html">문의</a></div></footer>
+<script>
+const $=id=>document.getElementById(id);const ids=['iw','ih','id','qty','weight','bw','bh','bd','divisor','buffer'];
+function n(id){return parseFloat($(id).value)||0}
+function orientations(a){return [[a[0],a[1],a[2]],[a[0],a[2],a[1]],[a[1],a[0],a[2]],[a[1],a[2],a[0]],[a[2],a[0],a[1]],[a[2],a[1],a[0]]]}
+function calculate(){const item=[n('iw'),n('ih'),n('id')],box=[n('bw'),n('bh'),n('bd')],qty=Math.max(1,Math.floor(n('qty'))),buffer=Math.min(80,Math.max(0,n('buffer')))/100;if([...item,...box].some(v=>v<=0)){['fit','fill','boxes','volWeight','charge'].forEach(id=>$(id).textContent='값을 확인하세요');return}const fits=orientations(item).some(o=>o.every((v,i)=>v<=box[i]));const iv=item.reduce((a,b)=>a*b,1),bv=box.reduce((a,b)=>a*b,1),fill=(iv*qty/bv)*100;const usable=bv*(1-buffer);const boxes=Math.max(1,Math.ceil(iv*qty/usable));const vw=bv/n('divisor');const w=n('weight');$('fit').textContent=fits?'가능':'불가';$('fit').className=fits?'ok':'warn';$('fill').textContent=fill.toFixed(1)+'%';$('boxes').textContent=boxes+'개 이상';$('volWeight').textContent=vw.toFixed(2)+' kg';$('charge').textContent=w>0?(Math.max(w,vw).toFixed(2)+' kg ('+(w>=vw?'실무게':'부피무게')+' 기준)'):'실무게를 입력하면 비교';}
+$('calc').addEventListener('click',calculate);ids.forEach(id=>$(id).addEventListener('input',calculate));$('reset').addEventListener('click',()=>{$('iw').value=24;$('ih').value=16;$('id').value=8;$('qty').value=3;$('weight').value='';$('bw').value=40;$('bh').value=30;$('bd').value=20;$('divisor').value=6000;$('buffer').value=10;calculate()});calculate();
+</script>
+</body></html>
