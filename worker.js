@@ -17,6 +17,30 @@ export class ViewCounter {
   }
 }
 
+const HOME_SITES = new Map([
+  ['/', 'barotool'],
+  ['/marketing', 'marketing'],
+  ['/marketing/', 'marketing'],
+  ['/packfit', 'packfit'],
+  ['/packfit/', 'packfit'],
+  ['/tilefit', 'tilefit'],
+  ['/tilefit/', 'tilefit']
+]);
+
+class ViewBadgeInjector {
+  constructor(site) {
+    this.site = site;
+  }
+
+  element(element) {
+    const site = this.site;
+    element.append(
+      `<div id="daily-view-badge" aria-live="polite" style="position:fixed;right:14px;bottom:14px;z-index:9999;padding:8px 11px;border-radius:999px;background:rgba(20,24,32,.88);color:#fff;font:600 12px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.18);backdrop-filter:blur(8px)">오늘 조회수 <span id="daily-view-count">…</span></div><script>(()=>{const n=document.getElementById('daily-view-count');fetch('/api/view?site=${site}',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{n.textContent=Number(d.today||0).toLocaleString('ko-KR')}).catch(()=>{const b=document.getElementById('daily-view-badge');if(b)b.style.display='none'})})()</script>`,
+      { html: true }
+    );
+  }
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -32,6 +56,16 @@ export default {
       return stub.fetch('https://counter.internal/increment');
     }
 
-    return env.ASSETS.fetch(request);
+    const response = await env.ASSETS.fetch(request);
+    const site = HOME_SITES.get(url.pathname);
+    const type = response.headers.get('content-type') || '';
+
+    if (site && type.includes('text/html')) {
+      return new HTMLRewriter()
+        .on('body', new ViewBadgeInjector(site))
+        .transform(response);
+    }
+
+    return response;
   }
 };
