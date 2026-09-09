@@ -12,6 +12,7 @@ export class ViewCounter {
 const HOME_SITES = new Map([
   ['/', 'barotool'], ['/marketing', 'marketing'], ['/marketing/', 'marketing'],
   ['/areafit', 'areafit'], ['/areafit/', 'areafit'], ['/floorfit', 'floorfit'], ['/floorfit/', 'floorfit'],
+  ['/moldingfit', 'moldingfit'], ['/moldingfit/', 'moldingfit'],
   ['/packfit', 'packfit'], ['/packfit/', 'packfit'], ['/tilefit', 'tilefit'], ['/tilefit/', 'tilefit'],
   ['/powercost', 'powercost'], ['/powercost/', 'powercost'], ['/curtainfit', 'curtainfit'], ['/curtainfit/', 'curtainfit'],
   ['/paintfit', 'paintfit'], ['/paintfit/', 'paintfit'], ['/wallfit', 'wallfit'], ['/wallfit/', 'wallfit'],
