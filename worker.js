@@ -15,7 +15,7 @@ const HOME_SITES = new Map([
   ['/packfit', 'packfit'], ['/packfit/', 'packfit'], ['/tilefit', 'tilefit'], ['/tilefit/', 'tilefit'],
   ['/powercost', 'powercost'], ['/powercost/', 'powercost'], ['/curtainfit', 'curtainfit'], ['/curtainfit/', 'curtainfit'],
   ['/paintfit', 'paintfit'], ['/paintfit/', 'paintfit'], ['/wallfit', 'wallfit'], ['/wallfit/', 'wallfit'],
-  ['/printfit', 'printfit'], ['/printfit/', 'printfit']
+  ['/printfit', 'printfit'], ['/printfit/', 'printfit'], ['/tvfit', 'tvfit'], ['/tvfit/', 'tvfit']
 ]);
 class ViewBadgeInjector {
   constructor(site) { this.site = site; }
