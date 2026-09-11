@@ -31,6 +31,7 @@
     ['마진·가격',[
       ['/marketing/product-profit.html','상품 마진'],
       ['/marketing/max-discount-rate.html','최대 할인율'],
+      ['/marketing/discount-volume-breakeven.html','할인 판매량 손익분기'],
       ['/marketing/bulk-profit.html','상품 마진 대량 분석'],
       ['/marketing/target-price.html','목표 판매가 역산'],
       ['/marketing/profit-buffer.html','마진 안전구간']
