@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap.xml
+Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-packfit.xml
