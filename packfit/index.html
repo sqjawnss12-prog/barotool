@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>포장핏 - 택배 박스 채움률·포장 효율·포장비 계산기</title>
-<meta name="description" content="상품과 박스 크기를 입력해 단품 수납 가능 여부, 부피 채움률, 예상 필요 박스 수, 부피무게를 계산하고 박스·완충재·작업시간을 반영한 포장비까지 연결해 확인하세요.">
+<meta name="description" content="상품과 박스 크기를 입력해 단품 수납 가능 여부, 부피 채움률, 예상 필요 박스 수, 부피무게를 계산하고 박스·완충재·작업시간을 반영한 포장비와 포장안 A/B 비교까지 확인하세요.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://barotool.sqjawnss12.workers.dev/packfit/">
 <meta property="og:type" content="website"><meta property="og:title" content="포장핏 - 택배 박스 채움률 계산기"><meta property="og:description" content="상품·박스 치수로 포장 효율과 부피무게를 빠르게 계산하세요."><meta property="og:url" content="https://barotool.sqjawnss12.workers.dev/packfit/">
@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<header><div class="wrap nav"><a class="brand" href="/packfit/">포장<b>핏</b></a><nav><a href="#calculator">채움률</a><a href="/packfit/packaging-cost.html">포장비</a><a href="/packfit/box-compare.html">박스 비교</a><a href="/">바로툴</a></nav></div></header>
+<header><div class="wrap nav"><a class="brand" href="/packfit/">포장<b>핏</b></a><nav><a href="#calculator">채움률</a><a href="/packfit/packaging-cost.html">포장비</a><a href="/packfit/packaging-compare.html">A/B 비교</a><a href="/packfit/box-compare.html">박스 비교</a><a href="/">바로툴</a></nav></div></header>
 <main>
 <section class="hero wrap"><span class="eyebrow">무료 · 회원가입 없음 · 브라우저 계산</span><h1>박스가 너무 크거나<br>작은지 바로 계산하세요</h1><p>상품과 택배 박스의 가로·세로·높이를 입력하면 단품이 실제로 들어갈 수 있는지 6가지 회전 방향을 확인하고, 부피 채움률과 예상 필요 박스 수, 부피무게까지 계산합니다.</p></section>
 <section class="wrap layout" id="calculator">
@@ -28,11 +28,11 @@
 <aside class="panel" aria-live="polite"><h2>계산 결과</h2><div class="results"><div class="metric"><span>단품 수납 여부</span><strong id="fit">-</strong></div><div class="metric"><span>부피 채움률</span><strong id="fill">-</strong></div><div class="metric"><span>완충재 여유 반영 예상 박스 수</span><strong id="boxes">-</strong></div><div class="metric"><span>박스 1개의 부피무게</span><strong id="volWeight">-</strong></div><div class="metric"><span>실무게 입력 시 비교</span><strong id="charge">-</strong></div></div></aside>
 </section>
 <div class="wrap content">
-<section class="callout"><h2>박스가 맞다면, 이제 주문당 포장비를 계산하세요</h2><p>박스·완충재·테이프 가격뿐 아니라 포장 작업시간과 파손 기대비용까지 합쳐야 실제 비교가 됩니다. <a href="/packfit/packaging-cost.html">포장비 계산기 →</a></p></section>
+<section class="callout"><h2>박스가 맞다면, 이제 실제 포장원가를 비교하세요</h2><p>현재 비용은 <a href="/packfit/packaging-cost.html">포장비 계산기</a>에서 확인하고, 박스나 작업방식을 바꾸려면 재료비·작업시간·파손률을 함께 반영하는 <a href="/packfit/packaging-compare.html">포장비 A/B 비교 계산기 →</a>를 사용하세요.</p></section>
 <section id="guide"><h2>포장핏은 무엇을 계산하나요?</h2><p>온라인 판매자나 중고거래 발송자가 상품에 비해 지나치게 큰 박스를 선택하면 완충재 사용량과 부피가 늘어날 수 있습니다. 포장핏은 상품 부피와 박스 부피를 비교해 <strong>채움률</strong>을 보여주고, 한 상품이 박스 안에 들어가는지는 가로·세로·높이의 6가지 회전 조합을 모두 비교합니다.</p><div class="formula">채움률(%) = 상품 1개 부피 × 수량 ÷ 박스 부피 × 100</div></section>
 <section><h2>부피무게는 참고값입니다</h2><p>부피무게는 일반적으로 <code>가로 × 세로 × 높이 ÷ 계수</code> 형태로 계산하지만 실제 운송사가 사용하는 계수와 반올림 방식은 서비스·계약 조건에 따라 달라질 수 있습니다. 포장핏은 특정 택배사의 운임을 보장하지 않으며, 발송 전 이용하려는 운송사의 공식 기준을 확인해야 합니다.</p></section>
 <section><h2>결과를 해석하는 방법</h2><p><strong>단품 수납 불가</strong>가 나오면 상품의 어느 회전 방향에서도 박스 각 변 안에 들어가지 않는다는 뜻입니다. 채움률은 공간 효율을 비교하기 위한 값으로, 100%에 가깝더라도 완충재와 포장 오차가 필요합니다. 그래서 기본값으로 10%의 여유 공간을 두고 예상 박스 수를 계산합니다.</p></section>
-<section><h2>다른 무료 사이트/도구</h2><div class="links"><a href="/packfit/packaging-cost.html">포장비 계산기</a><a href="/packfit/box-compare.html">박스 규격 비교</a><a href="/">바로툴</a><a href="/marketing/">마케팅셈</a><a href="/stocksem/">재고셈</a><a href="/image-compress.html">상품 이미지 용량 줄이기</a></div></section>
+<section><h2>다른 무료 사이트/도구</h2><div class="links"><a href="/packfit/packaging-cost.html">포장비 계산기</a><a href="/packfit/packaging-compare.html">포장비 A/B 비교</a><a href="/packfit/box-compare.html">박스 규격 비교</a><a href="/">바로툴</a><a href="/marketing/">마케팅셈</a><a href="/stocksem/">재고셈</a><a href="/image-compress.html">상품 이미지 용량 줄이기</a></div></section>
 </div>
 </main>
 <footer><div class="wrap">© 2026 포장핏 · <a href="/about.html">운영 소개</a> · <a href="/privacy.html">개인정보처리방침</a> · <a href="/contact.html">문의</a></div></footer>
