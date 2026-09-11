@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>택배 계약 단가 절감 계산기 - 월 택배비·연간 절감액 비교 | 포장핏</title>
+<meta name="description" content="현재 택배 단가와 새 계약 견적을 비교해 월 택배비, 월·연간 절감액, 반품·도서산간 추가비용을 계산하세요. 쇼핑몰·스마트스토어 판매자를 위한 무료 택배 계약 단가 계산기입니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://barotool.sqjawnss12.workers.dev/packfit/courier-contract-savings.html">
+<meta property="og:type" content="website"><meta property="og:title" content="택배 계약 단가 절감 계산기 | 포장핏"><meta property="og:description" content="택배 계약 전 현재 단가와 견적 단가의 월·연간 차이를 계산하세요."><meta property="og:url" content="https://barotool.sqjawnss12.workers.dev/packfit/courier-contract-savings.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"택배 계약 단가 절감 계산기","url":"https://barotool.sqjawnss12.workers.dev/packfit/courier-contract-savings.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","description":"월 출고량과 현재·견적 택배 단가를 비교해 월 및 연간 배송비 차이를 계산하는 도구"}</script>
+<style>
+:root{--bg:#f7f7f3;--card:#fff;--text:#172018;--muted:#667067;--line:#dfe5df;--accent:#147a43;--soft:#e9f6ee;--warn:#9b5b00}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}a{color:inherit}.wrap{width:min(1000px,92%);margin:auto}header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.nav{display:flex;align-items:center;justify-content:space-between;padding:15px 0}.brand{text-decoration:none;font-weight:900;font-size:1.22rem}.brand b{color:var(--accent)}nav a{font-size:.9rem;color:var(--muted);margin-left:16px;text-decoration:none}.hero{padding:54px 0 26px}.eyebrow{display:inline-block;background:var(--soft);color:var(--accent);font-weight:800;padding:5px 10px;border-radius:999px;font-size:.82rem}.hero h1{font-size:clamp(2rem,5vw,3.35rem);line-height:1.1;margin:14px 0}.hero p{color:var(--muted);max-width:760px}.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;padding-bottom:36px}.panel,.content section{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 30px rgba(0,0,0,.03)}h2{margin-top:0}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}label{display:block;font-size:.86rem;color:var(--muted);margin-bottom:12px}input{width:100%;margin-top:5px;padding:12px;border:1px solid #cbd3cb;border-radius:10px;font:inherit;background:#fff}.btn{width:100%;border:0;border-radius:11px;padding:13px 16px;background:var(--accent);color:#fff;font-weight:850;cursor:pointer}.results{display:grid;gap:10px}.metric{background:#fafbf9;border:1px solid var(--line);border-radius:13px;padding:14px}.metric span{display:block;color:var(--muted);font-size:.82rem}.metric strong{font-size:1.35rem}.good{color:var(--accent)}.bad{color:var(--warn)}.note{font-size:.86rem;color:var(--muted)}.content{padding:6px 0 60px}.content section{margin:16px 0}.formula{background:#f4f6f4;padding:12px;border-radius:10px;font-family:ui-monospace,monospace;overflow:auto}.links{display:flex;gap:14px;flex-wrap:wrap}.links a{color:var(--accent);font-weight:750}.table{width:100%;border-collapse:collapse}.table th,.table td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}footer{border-top:1px solid var(--line);background:#fff;color:var(--muted);padding:26px 0;font-size:.88rem}@media(max-width:760px){.layout,.grid2{grid-template-columns:1fr}.nav nav{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="/packfit/">포장<b>핏</b></a><nav><a href="/packfit/">포장 계산</a><a href="/packfit/3pl-quote-compare.html">3PL 견적 비교</a><a href="/packfit/box-order.html">박스 발주</a><a href="/">바로툴</a></nav></div></header>
+<main>
+<section class="hero wrap"><span class="eyebrow">쇼핑몰 물류비 · 무료 계산</span><h1>택배 계약,<br>바꾸면 실제로 얼마 아낄까?</h1><p>현재 택배 단가와 새 계약 견적을 월 출고량 기준으로 비교하세요. 반품과 도서산간 추가비까지 함께 넣어 월 비용과 연간 절감액을 계산합니다.</p></section>
+<section class="wrap layout" id="calculator">
+<div class="panel"><h2>택배비 조건 입력</h2>
+<div class="grid2"><label>월 정상 출고 건수<input id="ship" type="number" min="0" step="1" value="300"></label><label>월 반품 회수 건수<input id="returns" type="number" min="0" step="1" value="12"></label></div>
+<div class="grid2"><label>현재 정상배송 단가 (원)<input id="cur" type="number" min="0" step="10" value="3400"></label><label>새 계약 정상배송 단가 (원)<input id="next" type="number" min="0" step="10" value="3000"></label></div>
+<div class="grid2"><label>현재 반품 회수 단가 (원)<input id="curReturn" type="number" min="0" step="10" value="4000"></label><label>새 계약 반품 회수 단가 (원)<input id="nextReturn" type="number" min="0" step="10" value="3500"></label></div>
+<div class="grid2"><label>월 도서산간 발송 건수<input id="remote" type="number" min="0" step="1" value="5"></label><label>건당 도서산간 추가운임 차이<br><small>새 계약 − 현재 계약</small><input id="remoteDiff" type="number" step="10" value="0"></label></div>
+<label>새 계약 월 고정비/시스템 이용료 (원)<input id="fixed" type="number" min="0" step="100" value="0"></label>
+<button class="btn" id="calc">절감액 계산하기</button><p class="note">특정 택배사의 공식 요금표가 아니라 직접 받은 견적을 비교하는 계산기입니다. 부가세 포함 여부 등 비교 기준을 같게 맞춰 입력하세요.</p></div>
+<aside class="panel" aria-live="polite"><h2>비교 결과</h2><div class="results">
+<div class="metric"><span>현재 월 택배비</span><strong id="curTotal">-</strong></div>
+<div class="metric"><span>새 계약 월 택배비</span><strong id="nextTotal">-</strong></div>
+<div class="metric"><span>월 절감액</span><strong id="saveMonth">-</strong></div>
+<div class="metric"><span>연간 절감액</span><strong id="saveYear">-</strong></div>
+<div class="metric"><span>출고 1건당 실질 절감액</span><strong id="saveOrder">-</strong></div>
+<div class="metric"><span>정상배송 단가 절감률</span><strong id="rate">-</strong></div>
+</div></aside>
+</section>
+<div class="wrap content">
+<section><h2>택배 계약 단가는 월 물량과 함께 봐야 합니다</h2><p>건당 단가가 조금만 내려가도 월 출고량이 커지면 누적 차이는 커집니다. 반대로 새 계약에 고정 시스템비나 별도 회수비가 붙으면 표면적인 배송 단가만 보고 바꾸는 것이 불리할 수 있습니다. 이 계산기는 정상 출고, 반품 회수, 도서산간 차액, 월 고정비를 한 번에 합산합니다.</p><div class="formula">월 절감액 = 현재 월 비용 − 새 계약 월 비용<br>연간 절감액 = 월 절감액 × 12</div></section>
+<section><h2>견적 받을 때 같이 확인할 항목</h2><table class="table"><tr><th>항목</th><th>확인 이유</th></tr><tr><td>규격·중량 구간</td><td>같은 물량이어도 포장 후 크기와 무게에 따라 단가가 달라질 수 있습니다.</td></tr><tr><td>반품 회수비</td><td>정상 발송 단가와 별도로 책정되는 경우가 있어 총비용에 영향을 줍니다.</td></tr><tr><td>도서산간 추가운임</td><td>제주·도서산간 비중이 높다면 월 누적 차이가 커집니다.</td></tr><tr><td>최소 물량·고정비</td><td>낮은 단가 대신 최소 출고량이나 시스템 이용료가 붙는지 확인해야 합니다.</td></tr></table></section>
+<section><h2>풀필먼트까지 검토 중이라면?</h2><p>택배 단가만 바꾸는 것과 3PL에 포장·보관·출고를 맡기는 것은 비용 구조가 다릅니다. <a href="/packfit/fulfillment-vs-inhouse.html">풀필먼트 vs 직접포장 비용 계산기</a>로 직접 운영 인건비까지 비교한 뒤, 업체별 견적은 <a href="/packfit/3pl-quote-compare.html">3PL 견적 A/B 비교 계산기</a>에서 확인하세요.</p></section>
+<section><h2>관련 무료 도구</h2><div class="links"><a href="/packfit/">포장핏 홈</a><a href="/packfit/packing-labor.html">포장 인건비 계산기</a><a href="/packfit/box-order.html">택배 박스 발주수량</a><a href="/packfit/packaging-cost.html">포장비 계산기</a><a href="/stocksem/">재고셈</a><a href="/marketing/">마케팅셈</a><a href="/">바로툴</a></div></section>
+</div>
+</main>
+<footer><div class="wrap">© 2026 포장핏 · 계산 결과는 입력한 조건에 따른 비교용 추정치입니다.</div></footer>
+<script>
+const $=id=>document.getElementById(id), won=v=>Math.round(v).toLocaleString('ko-KR')+'원';
+function n(id){return Number($(id).value)||0}
+function calculate(){
+ const ship=Math.max(0,n('ship')),ret=Math.max(0,n('returns')),remote=Math.max(0,n('remote'));
+ const cur=n('cur'),next=n('next'),curR=n('curReturn'),nextR=n('nextReturn'),remoteDiff=n('remoteDiff'),fixed=Math.max(0,n('fixed'));
+ const current=ship*cur+ret*curR;
+ const proposed=ship*next+ret*nextR+remote*remoteDiff+fixed;
+ const save=current-proposed, yearly=save*12, per=ship?save/ship:0, rate=cur?((cur-next)/cur*100):0;
+ $('curTotal').textContent=won(current);$('nextTotal').textContent=won(proposed);$('saveMonth').textContent=won(save);$('saveYear').textContent=won(yearly);$('saveOrder').textContent=won(per);$('rate').textContent=rate.toFixed(1)+'%';
+ ['saveMonth','saveYear','saveOrder','rate'].forEach(id=>$(id).className=save>=0?'good':'bad');
+}
+$('calc').addEventListener('click',calculate);document.querySelectorAll('input').forEach(el=>el.addEventListener('input',calculate));calculate();
+</script>
+</body></html>
