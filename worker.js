@@ -28,6 +28,11 @@ class ViewBadgeInjector {
     element.append(`<div id="daily-view-badge" aria-live="polite" style="position:fixed;right:14px;bottom:14px;z-index:9999;padding:8px 11px;border-radius:999px;background:rgba(20,24,32,.88);color:#fff;font:600 12px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.18);backdrop-filter:blur(8px)">오늘 조회수 <span id="daily-view-count">…</span></div><script>(()=>{const n=document.getElementById('daily-view-count');fetch('/api/view?site=${site}',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{n.textContent=Number(d.today||0).toLocaleString('ko-KR')}).catch(()=>{const b=document.getElementById('daily-view-badge');if(b)b.style.display='none'})})()</script>`,{html:true});
   }
 }
+class QuoteWorkshopCrossLinkInjector {
+  element(element) {
+    element.append('<aside style="max-width:1040px;margin:18px auto 90px;padding:0 24px"><div style="background:#fff;border:1px solid #e5dfd4;border-radius:18px;padding:20px;line-height:1.7"><b>차량 구매·판매 전 확인</b><br><a href="/carvaluelab/" style="color:#7b3e20">차값랩 중고차 감가율·잔존가치 계산기 →</a><span style="color:#746e65;font-size:14px"> 현재 시세를 기준으로 실제 감가율과 향후 가치 시나리오를 계산합니다.</span></div></aside>',{html:true});
+  }
+}
 class MarketingToolUiInjector {
   element(element) {
     element.append('<script src="/marketing/tool-ui.js"></script>',{html:true});
@@ -47,6 +52,7 @@ export default { async fetch(request, env) {
   if(!site&&!marketingTool) return response;
   let rewriter=new HTMLRewriter();
   if(site) rewriter=rewriter.on('body',new ViewBadgeInjector(site));
+  if(url.pathname==='/quote-workshop'||url.pathname==='/quote-workshop/') rewriter=rewriter.on('body',new QuoteWorkshopCrossLinkInjector());
   if(marketingTool) rewriter=rewriter.on('body',new MarketingToolUiInjector());
   return rewriter.transform(response);
 }};
