@@ -11,7 +11,7 @@ export class ViewCounter {
 }
 const HOME_SITES = new Map([
   ['/', 'barotool'], ['/marketing', 'marketing'], ['/marketing/', 'marketing'], ['/qr', 'qr'], ['/qr/', 'qr'], ['/iconmaker', 'iconmaker'], ['/iconmaker/', 'iconmaker'], ['/watermark', 'watermark'], ['/watermark/', 'watermark'], ['/doclab', 'doclab'], ['/doclab/', 'doclab'], ['/couponsem', 'couponsem'], ['/couponsem/', 'couponsem'], ['/unitlab', 'unitlab'], ['/unitlab/', 'unitlab'], ['/stocksem', 'stocksem'], ['/stocksem/', 'stocksem'],
-  ['/quote-workshop', 'quote-workshop'], ['/quote-workshop/', 'quote-workshop'],
+  ['/quote-workshop', 'quote-workshop'], ['/quote-workshop/', 'quote-workshop'], ['/petcost', 'petcost'], ['/petcost/', 'petcost'],
   ['/areafit', 'areafit'], ['/areafit/', 'areafit'], ['/floorfit', 'floorfit'], ['/floorfit/', 'floorfit'],
   ['/moldingfit', 'moldingfit'], ['/moldingfit/', 'moldingfit'],
   ['/packfit', 'packfit'], ['/packfit/', 'packfit'], ['/tilefit', 'tilefit'], ['/tilefit/', 'tilefit'],
