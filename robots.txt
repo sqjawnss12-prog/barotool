@@ -4,3 +4,4 @@ Allow: /
 Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap.xml
 Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-packfit.xml
 Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-quote.xml
+Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-carvalue.xml
