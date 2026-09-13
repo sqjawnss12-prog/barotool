@@ -30,7 +30,7 @@ class ViewBadgeInjector {
 }
 class QuoteWorkshopCrossLinkInjector {
   element(element) {
-    element.append('<aside style="max-width:1040px;margin:18px auto 90px;padding:0 24px"><div style="background:#fff;border:1px solid #e5dfd4;border-radius:18px;padding:20px;line-height:1.7"><b>가전 청소비 비교</b><br><a href="/quote-workshop/dryer-cleaning-cost.html" style="color:#7b3e20;font-weight:800">건조기 분해청소 비용·견적 비교 →</a><span style="color:#746e65;font-size:14px"> 용량·분해범위·오염도를 반영하고 받은 견적도 비교합니다.</span><br><br><b>차량 구매·판매 전 확인</b><br><a href="/carvaluelab/" style="color:#7b3e20">차값랩 중고차 감가율·잔존가치 계산기 →</a><span style="color:#746e65;font-size:14px"> 현재 시세를 기준으로 실제 감가율과 향후 가치 시나리오를 계산합니다.</span></div></aside>',{html:true});
+    element.append('<aside style="max-width:1040px;margin:18px auto 90px;padding:0 24px"><div style="background:#fff;border:1px solid #e5dfd4;border-radius:18px;padding:20px;line-height:1.7"><b>고액 인테리어 견적 비교</b><br><a href="/quote-workshop/window-replacement-cost.html" style="color:#7b3e20;font-weight:800">24평·32평·34평 샷시 교체 비용·견적 비교 →</a><span style="color:#746e65;font-size:14px"> 전체·부분 교체와 로이유리, 확장 여부를 반영하고 실제 받은 견적도 판정합니다.</span><br><br><b>가전 청소비 비교</b><br><a href="/quote-workshop/dryer-cleaning-cost.html" style="color:#7b3e20;font-weight:800">건조기 분해청소 비용·견적 비교 →</a><span style="color:#746e65;font-size:14px"> 용량·분해범위·오염도를 반영하고 받은 견적도 비교합니다.</span><br><br><b>차량 구매·판매 전 확인</b><br><a href="/carvaluelab/" style="color:#7b3e20">차값랩 중고차 감가율·잔존가치 계산기 →</a><span style="color:#746e65;font-size:14px"> 현재 시세를 기준으로 실제 감가율과 향후 가치 시나리오를 계산합니다.</span></div></aside>',{html:true});
   }
 }
 class QrCrossLinkInjector {
