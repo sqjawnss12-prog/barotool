@@ -33,6 +33,11 @@ class QuoteWorkshopCrossLinkInjector {
     element.append('<aside style="max-width:1040px;margin:18px auto 90px;padding:0 24px"><div style="background:#fff;border:1px solid #e5dfd4;border-radius:18px;padding:20px;line-height:1.7"><b>차량 구매·판매 전 확인</b><br><a href="/carvaluelab/" style="color:#7b3e20">차값랩 중고차 감가율·잔존가치 계산기 →</a><span style="color:#746e65;font-size:14px"> 현재 시세를 기준으로 실제 감가율과 향후 가치 시나리오를 계산합니다.</span></div></aside>',{html:true});
   }
 }
+class QrCrossLinkInjector {
+  element(element) {
+    element.append('<aside style="max-width:1120px;margin:0 auto 70px;padding:0 24px"><div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:18px;padding:20px;line-height:1.7"><b>매장·카페에서 쓰는 Wi-Fi QR이 필요하신가요?</b><br><a href="/qr/wifi-qr-print.html" style="color:#1d4ed8;font-weight:800">와이파이 QR + 인쇄 안내문 만들기 →</a><span style="color:#475569;font-size:14px"> SSID와 비밀번호로 QR을 만들고 바로 출력할 수 있습니다.</span></div></aside>',{html:true});
+  }
+}
 class MarketingToolUiInjector {
   element(element) {
     element.append('<script src="/marketing/tool-ui.js"></script>',{html:true});
@@ -53,6 +58,7 @@ export default { async fetch(request, env) {
   let rewriter=new HTMLRewriter();
   if(site) rewriter=rewriter.on('body',new ViewBadgeInjector(site));
   if(url.pathname==='/quote-workshop'||url.pathname==='/quote-workshop/') rewriter=rewriter.on('body',new QuoteWorkshopCrossLinkInjector());
+  if(url.pathname==='/qr'||url.pathname==='/qr/') rewriter=rewriter.on('body',new QrCrossLinkInjector());
   if(marketingTool) rewriter=rewriter.on('body',new MarketingToolUiInjector());
   return rewriter.transform(response);
 }};
