@@ -9,3 +9,4 @@ Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-window-cleaning.xml
 Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-washing-installation.xml
 Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-rentalsem.xml
 Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-weddingsem.xml
+Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-outlet-installation.xml
