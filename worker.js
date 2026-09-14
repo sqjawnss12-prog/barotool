@@ -1,7 +1,18 @@
 export class ViewCounter {
   constructor(ctx) { this.ctx = ctx; }
-  async fetch() {
-    const kstDate = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  async fetch(request) {
+    const url = new URL(request.url);
+    const nowKst = new Date(Date.now() + 9 * 60 * 60 * 1000);
+    const kstDate = nowKst.toISOString().slice(0, 10);
+    if (url.searchParams.get('mode') === 'stats') {
+      const yesterdayDate = new Date(nowKst.getTime() - 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+      const today = (await this.ctx.storage.get(`day:${kstDate}`)) || 0;
+      const yesterday = (await this.ctx.storage.get(`day:${yesterdayDate}`)) || 0;
+      const days = await this.ctx.storage.list({ prefix: 'day:' });
+      let total = 0;
+      for (const value of days.values()) total += Number(value || 0);
+      return Response.json({ today, yesterday, total, date: kstDate }, { headers: { 'Cache-Control': 'no-store' } });
+    }
     const key = `day:${kstDate}`;
     const current = (await this.ctx.storage.get(key)) || 0;
     const next = current + 1;
@@ -46,10 +57,18 @@ class MarketingToolUiInjector {
 const MARKETING_NON_TOOLS=new Set(['/marketing/','/marketing/index.html','/marketing/about.html','/marketing/privacy.html','/marketing/contact.html']);
 export default { async fetch(request, env) {
   const url = new URL(request.url);
-  if (url.pathname === '/api/view') {
+  if (url.pathname === '/api/view' || url.pathname === '/api/view-stats') {
     const site = (url.searchParams.get('site') || 'barotool').toLowerCase();
     if (!/^[a-z0-9-]{1,40}$/.test(site)) return new Response('Bad Request',{status:400});
-    const id=env.VIEW_COUNTER.idFromName(site); return env.VIEW_COUNTER.get(id).fetch(request);
+    const id=env.VIEW_COUNTER.idFromName(site);
+    const stub=env.VIEW_COUNTER.get(id);
+    if (url.pathname === '/api/view-stats') {
+      const statsUrl = new URL(request.url);
+      statsUrl.pathname = '/api/view';
+      statsUrl.searchParams.set('mode','stats');
+      return stub.fetch(statsUrl.toString());
+    }
+    return stub.fetch(request);
   }
   const response=await env.ASSETS.fetch(request), site=HOME_SITES.get(url.pathname), type=response.headers.get('content-type')||'';
   if(!type.includes('text/html')) return response;
