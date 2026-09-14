@@ -6,3 +6,4 @@ Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-packfit.xml
 Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-quote.xml
 Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-carvalue.xml
 Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-window-cleaning.xml
+Sitemap: https://barotool.sqjawnss12.workers.dev/sitemap-washing-installation.xml
