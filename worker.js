@@ -23,7 +23,7 @@ export class ViewCounter {
 const HOME_SITES = new Map([
   ['/', 'barotool'], ['/marketing', 'marketing'], ['/marketing/', 'marketing'], ['/qr', 'qr'], ['/qr/', 'qr'], ['/iconmaker', 'iconmaker'], ['/iconmaker/', 'iconmaker'], ['/watermark', 'watermark'], ['/watermark/', 'watermark'], ['/doclab', 'doclab'], ['/doclab/', 'doclab'], ['/couponsem', 'couponsem'], ['/couponsem/', 'couponsem'], ['/unitlab', 'unitlab'], ['/unitlab/', 'unitlab'], ['/stocksem', 'stocksem'], ['/stocksem/', 'stocksem'],
   ['/quote-workshop', 'quote-workshop'], ['/quote-workshop/', 'quote-workshop'], ['/petcost', 'petcost'], ['/petcost/', 'petcost'], ['/roundsem', 'roundsem'], ['/roundsem/', 'roundsem'], ['/rentalsem', 'rentalsem'], ['/rentalsem/', 'rentalsem'],
-  ['/carvaluelab', 'carvaluelab'], ['/carvaluelab/', 'carvaluelab'], ['/weddingsem', 'weddingsem'], ['/weddingsem/', 'weddingsem'],
+  ['/carvaluelab', 'carvaluelab'], ['/carvaluelab/', 'carvaluelab'], ['/weddingsem', 'weddingsem'], ['/weddingsem/', 'weddingsem'], ['/tutorsem', 'tutorsem'], ['/tutorsem/', 'tutorsem'],
   ['/areafit', 'areafit'], ['/areafit/', 'areafit'], ['/floorfit', 'floorfit'], ['/floorfit/', 'floorfit'], ['/moldingfit', 'moldingfit'], ['/moldingfit/', 'moldingfit'],
   ['/packfit', 'packfit'], ['/packfit/', 'packfit'], ['/tilefit', 'tilefit'], ['/tilefit/', 'tilefit'], ['/powercost', 'powercost'], ['/powercost/', 'powercost'], ['/curtainfit', 'curtainfit'], ['/curtainfit/', 'curtainfit'],
   ['/paintfit', 'paintfit'], ['/paintfit/', 'paintfit'], ['/wallfit', 'wallfit'], ['/wallfit/', 'wallfit'], ['/printfit', 'printfit'], ['/printfit/', 'printfit'], ['/tvfit', 'tvfit'], ['/tvfit/', 'tvfit'],
