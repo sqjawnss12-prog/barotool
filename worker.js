@@ -1,76 +1,16 @@
 export class ViewCounter {
   constructor(ctx) { this.ctx = ctx; }
   async fetch(request) {
-    const url = new URL(request.url);
-    const nowKst = new Date(Date.now() + 9 * 60 * 60 * 1000);
-    const kstDate = nowKst.toISOString().slice(0, 10);
-    if (url.searchParams.get('mode') === 'stats') {
-      const yesterdayDate = new Date(nowKst.getTime() - 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
-      const today = (await this.ctx.storage.get(`day:${kstDate}`)) || 0;
-      const yesterday = (await this.ctx.storage.get(`day:${yesterdayDate}`)) || 0;
-      const days = await this.ctx.storage.list({ prefix: 'day:' });
-      let total = 0;
-      for (const value of days.values()) total += Number(value || 0);
-      return Response.json({ today, yesterday, total, date: kstDate }, { headers: { 'Cache-Control': 'no-store' } });
-    }
-    const key = `day:${kstDate}`;
-    const current = (await this.ctx.storage.get(key)) || 0;
-    const next = current + 1;
-    await this.ctx.storage.put(key, next);
-    return Response.json({ today: next, date: kstDate }, { headers: { 'Cache-Control': 'no-store' } });
+    const url = new URL(request.url); const nowKst = new Date(Date.now() + 9*60*60*1000); const kstDate=nowKst.toISOString().slice(0,10);
+    if(url.searchParams.get('mode')==='stats'){const yesterdayDate=new Date(nowKst.getTime()-86400000).toISOString().slice(0,10);const today=(await this.ctx.storage.get(`day:${kstDate}`))||0;const yesterday=(await this.ctx.storage.get(`day:${yesterdayDate}`))||0;const days=await this.ctx.storage.list({prefix:'day:'});let total=0;for(const value of days.values())total+=Number(value||0);return Response.json({today,yesterday,total,date:kstDate},{headers:{'Cache-Control':'no-store'}})}
+    const key=`day:${kstDate}`,current=(await this.ctx.storage.get(key))||0,next=current+1;await this.ctx.storage.put(key,next);return Response.json({today:next,date:kstDate},{headers:{'Cache-Control':'no-store'}});
   }
 }
-const HOME_SITES = new Map([
-  ['/', 'barotool'], ['/marketing', 'marketing'], ['/marketing/', 'marketing'], ['/qr', 'qr'], ['/qr/', 'qr'], ['/iconmaker', 'iconmaker'], ['/iconmaker/', 'iconmaker'], ['/watermark', 'watermark'], ['/watermark/', 'watermark'], ['/doclab', 'doclab'], ['/doclab/', 'doclab'], ['/couponsem', 'couponsem'], ['/couponsem/', 'couponsem'], ['/unitlab', 'unitlab'], ['/unitlab/', 'unitlab'], ['/stocksem', 'stocksem'], ['/stocksem/', 'stocksem'],
-  ['/quote-workshop', 'quote-workshop'], ['/quote-workshop/', 'quote-workshop'], ['/petcost', 'petcost'], ['/petcost/', 'petcost'], ['/roundsem', 'roundsem'], ['/roundsem/', 'roundsem'], ['/rentalsem', 'rentalsem'], ['/rentalsem/', 'rentalsem'],
-  ['/carvaluelab', 'carvaluelab'], ['/carvaluelab/', 'carvaluelab'], ['/weddingsem', 'weddingsem'], ['/weddingsem/', 'weddingsem'], ['/tutorsem', 'tutorsem'], ['/tutorsem/', 'tutorsem'],
-  ['/areafit', 'areafit'], ['/areafit/', 'areafit'], ['/floorfit', 'floorfit'], ['/floorfit/', 'floorfit'], ['/moldingfit', 'moldingfit'], ['/moldingfit/', 'moldingfit'],
-  ['/packfit', 'packfit'], ['/packfit/', 'packfit'], ['/tilefit', 'tilefit'], ['/tilefit/', 'tilefit'], ['/powercost', 'powercost'], ['/powercost/', 'powercost'], ['/curtainfit', 'curtainfit'], ['/curtainfit/', 'curtainfit'],
-  ['/paintfit', 'paintfit'], ['/paintfit/', 'paintfit'], ['/wallfit', 'wallfit'], ['/wallfit/', 'wallfit'], ['/printfit', 'printfit'], ['/printfit/', 'printfit'], ['/tvfit', 'tvfit'], ['/tvfit/', 'tvfit'],
-  ['/filmfit', 'filmfit'], ['/filmfit/', 'filmfit'], ['/monitorfit', 'monitorfit'], ['/monitorfit/', 'monitorfit']
-]);
-class ViewBadgeInjector {
-  constructor(site) { this.site = site; }
-  element(element) {
-    const site = this.site;
-    element.append(`<div id="daily-view-badge" aria-live="polite" style="position:fixed;right:14px;bottom:14px;z-index:9999;padding:8px 11px;border-radius:999px;background:rgba(20,24,32,.88);color:#fff;font:600 12px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.18);backdrop-filter:blur(8px)">오늘 조회수 <span id="daily-view-count">…</span></div><script>(()=>{const n=document.getElementById('daily-view-count');fetch('/api/view?site=${site}',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{n.textContent=Number(d.today||0).toLocaleString('ko-KR')}).catch(()=>{const b=document.getElementById('daily-view-badge');if(b)b.style.display='none'})})()</script>`,{html:true});
-  }
-}
-class QuoteWorkshopCrossLinkInjector {
-  element(element) {
-    element.append('<aside style="max-width:1040px;margin:18px auto 90px;padding:0 24px"><div style="background:#fff;border:1px solid #e5dfd4;border-radius:18px;padding:20px;line-height:1.7"><b>새 무료 계산기</b><br><a href="/weddingsem/" style="color:#7b3e20;font-weight:800">웨딩셈 결혼식 비용 계산기 →</a><span style="color:#746e65;font-size:14px"> 하객 수·식대·대관료·스드메를 합산해 2026년 전국·지역 평균과 비교합니다.</span><br><br><b>새로 추가된 홈케어 견적</b><br><a href="/quote-workshop/window-cleaning-cost.html" style="color:#7b3e20;font-weight:800">창문·외창 청소 비용·견적 비교 →</a><span style="color:#746e65;font-size:14px"> 평수·내외창 범위·창 구조·오염도를 반영하고 실제 받은 견적도 판정합니다.</span><br><br><b>창호·커튼 견적 비교</b><br><a href="/curtainfit/blind-installation-cost.html" style="color:#7b3e20;font-weight:800">블라인드 설치 비용·견적 비교 →</a><span style="color:#746e65;font-size:14px"> 맞춤 제작과 제품 구매 후 설치를 나눠 계산하고 공개 거래 범위와 비교합니다.</span><br><br><b>인테리어 마감 견적 비교</b><br><a href="/quote-workshop/baseboard-molding-replacement-cost.html" style="color:#7b3e20;font-weight:800">걸레받이·몰딩 교체 비용·견적 비교 →</a><span style="color:#746e65;font-size:14px"> 시공 길이·철거·문선·도배/도장 복구를 반영하고 실제 받은 견적도 비교합니다.</span><br><br><b>홈케어 견적 비교</b><br><a href="/quote-workshop/sofa-cleaning-cost.html" style="color:#7b3e20;font-weight:800">소파 청소 비용·견적 비교 →</a><span style="color:#746e65;font-size:14px"> 크기·재질·습식/스팀·오염도를 반영하고 실제 받은 견적도 판정합니다.</span><br><a href="/quote-workshop/mattress-cleaning-cost.html" style="color:#7b3e20;font-weight:800">매트리스 청소 비용·견적 비교 →</a><span style="color:#746e65;font-size:14px"> 크기·건식/습식·양면 작업을 반영하고 실제 받은 견적도 판정합니다.</span><br><br><b>가전 설치·수리 견적 비교</b><br><a href="/quote-workshop/refrigerator-installation-cost.html" style="color:#7b3e20;font-weight:800">냉장고 설치·수리 비용·견적 비교 →</a><span style="color:#746e65;font-size:14px"> 일반형·양문형·4도어·김치냉장고와 이전설치 조건을 반영해 계산합니다.</span><br><br><b>고액 인테리어 견적 비교</b><br><a href="/quote-workshop/window-replacement-cost.html" style="color:#7b3e20;font-weight:800">24평·32평·34평 샷시 교체 비용·견적 비교 →</a><span style="color:#746e65;font-size:14px"> 전체·부분 교체와 로이유리, 확장 여부를 반영하고 실제 받은 견적도 판정합니다.</span><br><br><b>가전 청소비 비교</b><br><a href="/quote-workshop/dryer-cleaning-cost.html" style="color:#7b3e20;font-weight:800">건조기 분해청소 비용·견적 비교 →</a><span style="color:#746e65;font-size:14px"> 용량·분해범위·오염도를 반영하고 받은 견적도 비교합니다.</span><br><br><b>차량 구매·판매 전 확인</b><br><a href="/carvaluelab/" style="color:#7b3e20">차값랩 중고차 감가율·잔존가치 계산기 →</a><span style="color:#746e65;font-size:14px"> 현재 시세를 기준으로 실제 감가율과 향후 가치 시나리오를 계산합니다.</span></div></aside>',{html:true});
-  }
-}
-class RootCrossLinkInjector {
-  element(element) {
-    element.append('<aside style="max-width:1120px;margin:0 auto 70px;padding:0 24px"><div style="background:#fff7f5;border:1px solid #eaded9;border-radius:18px;padding:20px;line-height:1.7"><b>새 무료 도구</b><br><a href="/weddingsem/" style="color:#7a4141;font-weight:800">웨딩셈 결혼식 비용 계산기 →</a><span style="color:#6f6260;font-size:14px"> 식대·보증인원·대관료·스드메를 합산하고 2026년 조사 평균과 비교합니다.</span></div></aside>',{html:true});
-  }
-}
-class QrCrossLinkInjector {
-  element(element) {
-    element.append('<aside style="max-width:1120px;margin:0 auto 70px;padding:0 24px"><div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:18px;padding:20px;line-height:1.7"><b>매장·카페에서 쓰는 Wi-Fi QR이 필요하신가요?</b><br><a href="/qr/wifi-qr-print.html" style="color:#1d4ed8;font-weight:800">와이파이 QR + 인쇄 안내문 만들기 →</a><span style="color:#475569;font-size:14px"> SSID와 비밀번호로 QR을 만들고 바로 출력할 수 있습니다.</span></div></aside>',{html:true});
-  }
-}
-class MarketingToolUiInjector { element(element) { element.append('<script src="/marketing/tool-ui.js"></script>',{html:true}); } }
+const HOME_SITES=new Map([['/','barotool'],['/marketing','marketing'],['/marketing/','marketing'],['/qr','qr'],['/qr/','qr'],['/iconmaker','iconmaker'],['/iconmaker/','iconmaker'],['/watermark','watermark'],['/watermark/','watermark'],['/doclab','doclab'],['/doclab/','doclab'],['/couponsem','couponsem'],['/couponsem/','couponsem'],['/unitlab','unitlab'],['/unitlab/','unitlab'],['/stocksem','stocksem'],['/stocksem/','stocksem'],['/quote-workshop','quote-workshop'],['/quote-workshop/','quote-workshop'],['/petcost','petcost'],['/petcost/','petcost'],['/roundsem','roundsem'],['/roundsem/','roundsem'],['/rentalsem','rentalsem'],['/rentalsem/','rentalsem'],['/carvaluelab','carvaluelab'],['/carvaluelab/','carvaluelab'],['/weddingsem','weddingsem'],['/weddingsem/','weddingsem'],['/tutorsem','tutorsem'],['/tutorsem/','tutorsem'],['/areafit','areafit'],['/areafit/','areafit'],['/floorfit','floorfit'],['/floorfit/','floorfit'],['/moldingfit','moldingfit'],['/moldingfit/','moldingfit'],['/packfit','packfit'],['/packfit/','packfit'],['/tilefit','tilefit'],['/tilefit/','tilefit'],['/powercost','powercost'],['/powercost/','powercost'],['/curtainfit','curtainfit'],['/curtainfit/','curtainfit'],['/paintfit','paintfit'],['/paintfit/','paintfit'],['/wallfit','wallfit'],['/wallfit/','wallfit'],['/printfit','printfit'],['/printfit/','printfit'],['/tvfit','tvfit'],['/tvfit/','tvfit'],['/filmfit','filmfit'],['/filmfit/','filmfit'],['/monitorfit','monitorfit'],['/monitorfit/','monitorfit']]);
+class ViewBadgeInjector{constructor(site){this.site=site}element(element){const site=this.site;element.append(`<div id="daily-view-badge" aria-live="polite" style="position:fixed;right:14px;bottom:14px;z-index:9999;padding:8px 11px;border-radius:999px;background:rgba(20,24,32,.88);color:#fff;font:600 12px/1.2 system-ui;box-shadow:0 4px 16px rgba(0,0,0,.18)">오늘 조회수 <span id="daily-view-count">…</span></div><script>(()=>{const n=document.getElementById('daily-view-count');fetch('/api/view?site=${site}',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>n.textContent=Number(d.today||0).toLocaleString('ko-KR')).catch(()=>{const b=document.getElementById('daily-view-badge');if(b)b.style.display='none'})})()</script>`,{html:true})}}
+class QuoteWorkshopCrossLinkInjector{element(element){element.append('<aside style="max-width:1040px;margin:18px auto 90px;padding:0 24px"><div style="background:#fff;border:1px solid #e5dfd4;border-radius:18px;padding:20px;line-height:1.7"><b>이번에 개선된 견적 계산기</b><br><a href="/quote-workshop/balcony-elastic-coating-cost.html" style="color:#7b3e20;font-weight:800">2026 베란다 탄성코트 비용·견적 비교 →</a><span style="color:#746e65;font-size:14px"> 20~50평대, 베란다·세탁실·드레스룸 범위와 벽 보수 상태를 반영합니다.</span><br><br><b>결혼 준비 비용</b><br><a href="/weddingsem/" style="color:#7b3e20;font-weight:800">웨딩셈 결혼식 비용 계산기 →</a><br><br><b>고액 인테리어</b><br><a href="/quote-workshop/window-replacement-cost.html" style="color:#7b3e20;font-weight:800">샷시 교체 비용·견적 비교 →</a></div></aside>',{html:true})}}
+class RootCrossLinkInjector{element(element){element.append('<aside style="max-width:1120px;margin:0 auto 70px;padding:0 24px"><div style="background:#fff7f5;border:1px solid #eaded9;border-radius:18px;padding:20px;line-height:1.7"><b>무료 비용·견적 도구</b><br><a href="/quote-workshop/balcony-elastic-coating-cost.html" style="color:#7a4141;font-weight:800">2026 탄성코트 비용 계산기 →</a><span style="color:#6f6260;font-size:14px"> 평형·시공 범위·벽 상태별 예상 견적을 비교합니다.</span><br><a href="/weddingsem/" style="color:#7a4141;font-weight:800">웨딩셈 결혼식 비용 계산기 →</a></div></aside>',{html:true})}}
+class QrCrossLinkInjector{element(element){element.append('<aside style="max-width:1120px;margin:0 auto 70px;padding:0 24px"><div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:18px;padding:20px"><a href="/qr/wifi-qr-print.html" style="color:#1d4ed8;font-weight:800">와이파이 QR + 인쇄 안내문 만들기 →</a></div></aside>',{html:true})}}
+class MarketingToolUiInjector{element(element){element.append('<script src="/marketing/tool-ui.js"></script>',{html:true})}}
 const MARKETING_NON_TOOLS=new Set(['/marketing/','/marketing/index.html','/marketing/about.html','/marketing/privacy.html','/marketing/contact.html']);
-export default { async fetch(request, env) {
-  const url = new URL(request.url);
-  if (url.pathname === '/api/view' || url.pathname === '/api/view-stats') {
-    const site = (url.searchParams.get('site') || 'barotool').toLowerCase();
-    if (!/^[a-z0-9-]{1,40}$/.test(site)) return new Response('Bad Request',{status:400});
-    const id=env.VIEW_COUNTER.idFromName(site), stub=env.VIEW_COUNTER.get(id);
-    if (url.pathname === '/api/view-stats') { const statsUrl = new URL(request.url); statsUrl.pathname='/api/view'; statsUrl.searchParams.set('mode','stats'); return stub.fetch(statsUrl.toString()); }
-    return stub.fetch(request);
-  }
-  const response=await env.ASSETS.fetch(request), site=HOME_SITES.get(url.pathname), type=response.headers.get('content-type')||'';
-  if(!type.includes('text/html')) return response;
-  const marketingTool=url.pathname.startsWith('/marketing/')&&url.pathname.endsWith('.html')&&!MARKETING_NON_TOOLS.has(url.pathname);
-  if(!site&&!marketingTool) return response;
-  let rewriter=new HTMLRewriter();
-  if(site) rewriter=rewriter.on('body',new ViewBadgeInjector(site));
-  if(url.pathname==='/') rewriter=rewriter.on('body',new RootCrossLinkInjector());
-  if(url.pathname==='/quote-workshop'||url.pathname==='/quote-workshop/') rewriter=rewriter.on('body',new QuoteWorkshopCrossLinkInjector());
-  if(url.pathname==='/qr'||url.pathname==='/qr/') rewriter=rewriter.on('body',new QrCrossLinkInjector());
-  if(marketingTool) rewriter=rewriter.on('body',new MarketingToolUiInjector());
-  return rewriter.transform(response);
-}};
+export default{async fetch(request,env){const url=new URL(request.url);if(url.pathname==='/api/view'||url.pathname==='/api/view-stats'){const site=(url.searchParams.get('site')||'barotool').toLowerCase();if(!/^[a-z0-9-]{1,40}$/.test(site))return new Response('Bad Request',{status:400});const id=env.VIEW_COUNTER.idFromName(site),stub=env.VIEW_COUNTER.get(id);if(url.pathname==='/api/view-stats'){const u=new URL(request.url);u.pathname='/api/view';u.searchParams.set('mode','stats');return stub.fetch(u.toString())}return stub.fetch(request)}const response=await env.ASSETS.fetch(request),site=HOME_SITES.get(url.pathname),type=response.headers.get('content-type')||'';if(!type.includes('text/html'))return response;const marketingTool=url.pathname.startsWith('/marketing/')&&url.pathname.endsWith('.html')&&!MARKETING_NON_TOOLS.has(url.pathname);if(!site&&!marketingTool)return response;let rewriter=new HTMLRewriter();if(site)rewriter=rewriter.on('body',new ViewBadgeInjector(site));if(url.pathname==='/')rewriter=rewriter.on('body',new RootCrossLinkInjector());if(url.pathname==='/quote-workshop'||url.pathname==='/quote-workshop/')rewriter=rewriter.on('body',new QuoteWorkshopCrossLinkInjector());if(url.pathname==='/qr'||url.pathname==='/qr/')rewriter=rewriter.on('body',new QrCrossLinkInjector());if(marketingTool)rewriter=rewriter.on('body',new MarketingToolUiInjector());return rewriter.transform(response)}};
